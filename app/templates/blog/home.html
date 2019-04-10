@@ -6,10 +6,10 @@
         <div class="alert alert-light">
             <h1>{{ post.title }}</h1>
             <p>{{ post.text }}</p>
-            <span class="text-muted">Публикация: {{ post.date }}</span>
+            <span class="text-muted">{{ post.date|date:"j F Y, Время: H:i:s" }}</span>
             {% if post.avtor %}
                 <p><b>Автор:</b>
-                    <mark>Админ</mark>
+                    <mark>{{ post.avtor }}</mark>
                 </p>
             {% else %}
                 <p><b>Автор:</b>

@@ -30,13 +30,20 @@
         </ul>
     </div>
     <div class="navbar">
-        <a href="#" class="btn btn-outline-secondary mr-2">Регистрация</a>
+        <a href="{% url 'reg' %}" class="btn btn-outline-secondary mr-2">Регистрация</a>
         <a href="#" class="btn btn-outline-secondary ">Войти</a>
     </div>
 </nav>
 <main class="container">
     <div class="row">
         <div class="col-md-8">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             {% block main_section %}
             {% endblock %}
         </div>
