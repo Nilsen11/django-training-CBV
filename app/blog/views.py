@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import News
 
@@ -34,6 +34,19 @@ class CreateNewsView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.avtor = self.request.user
         return super().form_valid(form)
+
+
+class UpdateNewsView(LoginRequiredMixin, UpdateView):
+    model = News
+    template_name = 'blog/news_form.html'
+    fields = ['title', 'text']
+
+    def form_valid(self, form):
+        form.instance.avtor = self.request.user
+        return super().form_valid(form)
+
+
+
 
 
 def contacts(request):
