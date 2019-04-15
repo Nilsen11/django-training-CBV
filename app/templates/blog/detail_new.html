@@ -1,0 +1,46 @@
+{% extends 'blog/../base.html' %}
+
+
+{% block main_section %}
+    <div class="alert alert-light">
+        <a href="{% url 'blog-home' %}">Вернуться на главную</a>
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.text }}</p>
+        <div class="row">
+            <div>
+                {% if object.avtor.profile.img %}
+                    <img src="{{ object.avtor.profile.img.url }}" alt="{{ object.avtor }}" class="user_image">
+                {% else %}
+                    <img src="/media/default.jpg" alt="{{ object.avtor }}" class="user_image">
+                {% endif %}
+            </div>
+            <div class="mt-2">
+                <span class="text-muted"><b>Дата:</b> {{ object.date|date:"d E Y, в H:i:s" }}</span>
+
+                <p><b>Автор:</b>
+                    <mark>{{ object.avtor }}</mark>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock main_section %}
+
+{% block aside_section %}
+    <div class="p-3 rounded">
+        <h3>
+            <b>Новости</b>
+        </h3>
+        <p class="pt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolores, earum error iste
+            maxime
+            pariatur quo totam ullam ut vero. Animi cum cupiditate dignissimos ea earum, esse, facilis hic ipsam
+            itaque nisi non odio officia quasi quis reiciendis voluptas voluptatem?
+        </p>
+    </div>
+
+    <div class="p-3">
+        <img src="https://i.ytimg.com/vi/cmjFuzQNMio/maxresdefault.jpg" alt="" class="img-thumbnail">
+    </div>
+{% endblock aside_section %}

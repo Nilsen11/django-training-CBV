@@ -15,16 +15,14 @@
                     {% endif %}
                 </div>
                 <div class="mt-2">
-                    <span class="text-muted"><b>Дата:</b> {{ post.date|date:"j F Y, Время: H:i:s" }}</span>
+                    <span class="text-muted"><b>Дата:</b> {{ post.date|date:"d E Y, в H:i:s" }}</span>
 
                     <p><b>Автор:</b>
                         <mark>{{ post.avtor }}</mark>
                     </p>
-
-
                 </div>
             </div>
-
+            <a href="{% url 'detail-news' post.pk %}" class="btn btn-outline-warning">Читать далее</a>
 
         </div>
     {% endfor %}
