@@ -6,17 +6,26 @@ body {
     border-color: #bfbfbf;
 }
 
-.form-section{
+.user_image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.form-section {
     background: #fff;
     padding: 20px;
     border: 1px solid silver;
     box-sizing: border-box;
     width: 100%;
-    -webkit-box-shadow: 0 2px 3px 0 rgba(74,74,74,.21);
+    -webkit-box-shadow: 0 2px 3px 0 rgba(74, 74, 74, .21);
     -moz-box-shadow: 0 2px 3px 0 rgba(74, 74, 74, .21);
-    box-shadow:0 2px 3px 0 rgba(74, 74, 74, .21);
+    box-shadow: 0 2px 3px 0 rgba(74, 74, 74, .21);
 }
-.form-section > h2{
+
+.form-section > h2 {
     color: #b38a22;
     margin-bottom: 10px;
 }
