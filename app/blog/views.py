@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from .models import News
 
 
@@ -9,6 +10,7 @@ class ShowNewsView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'news'
     ordering = ['-date']
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ShowNewsView, self).get_context_data(**kwargs)
@@ -62,6 +64,22 @@ class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == news.avtor:
             return True
         return False
+
+
+class UserShowNewsView(ListView):
+    model = News
+    template_name = 'blog/user_news.html'
+    context_object_name = 'news'
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return News.objects.filter(avtor=user).order_by('-date')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(UserShowNewsView, self).get_context_data(**kwargs)
+        context['title'] = f"Статьи пользователя {self.kwargs.get('username')}"
+        return context
 
 
 def contacts(request):

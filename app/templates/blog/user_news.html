@@ -2,6 +2,8 @@
 
 
 {% block main_section %}
+    <h2>Все статьи от автора {{ view.kwargs.username }} </h2>
+    <h4>Количество: {{ page_obj.paginator.count }}</h4>
     {% for post in news %}
         <div class="alert alert-light">
             <h1>{{ post.title }}</h1>
@@ -18,7 +20,7 @@
                     <span class="text-muted"><b>Дата:</b> {{ post.date|date:"d E Y, в H:i:s" }}</span>
 
                     <p><b>Автор:</b>
-                        <a href="{% url 'user-news' post.avtor %}">{{ post.avtor }}</a>
+                        <mark>{{ post.avtor }}</mark>
                     </p>
                 </div>
             </div>
@@ -29,7 +31,7 @@
 
     {% if is_paginated %}
         {% if page_obj.has_previous %}
-            <a href="/" class="btn btn-outline-warning">Начало</a>
+            <a href="?page=1" class="btn btn-outline-warning">Начало</a>
             <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-warning">Предыдущая</a>
         {% endif %}
         {% for num in page_obj.paginator.page_range %}

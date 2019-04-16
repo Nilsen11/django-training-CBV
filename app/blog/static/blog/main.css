@@ -2,6 +2,11 @@ body {
     background-color: #fafafa;
 }
 
+img {
+    max-width: 100% !important;
+
+}
+
 .alert-light {
     border-color: #bfbfbf;
 }
@@ -30,9 +35,10 @@ body {
     margin-bottom: 10px;
 }
 
-footer, footer a{
+footer, footer a {
     color: #ffffff;
 }
-footer a:hover{
+
+footer a:hover {
     color: #ffffff;
 }
