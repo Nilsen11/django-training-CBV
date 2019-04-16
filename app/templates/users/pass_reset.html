@@ -3,14 +3,13 @@
 
 {% block main_section %}
     <div class="form-section">
-        <h2>Авторизация</h2>
+        <h2>Восстановления пароля</h2>
         <form action="" method="post">
             {% csrf_token %}
             {{ form|crispy }}
-            <button class="btn btn-outline-warning" type="submit">Авторизоваться</button>
+            <button class="btn btn-danger" type="submit">Запросить новый пароль</button>
         </form>
-        <hr>
-        <a href="{% url 'pass-reset' %}">Забыли пароль?</a>
+
     </div>
 {% endblock main_section %}
 
