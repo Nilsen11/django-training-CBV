@@ -21,7 +21,7 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample09">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'blog-home' %}">Главная</a>
             </li>
             <li class="nav-item">
@@ -31,6 +31,7 @@
     </div>
     <div class="navbar">
         {% if user.is_authenticated %}
+            <a href="{% url 'add-news' %}" class="btn btn-outline-secondary mr-2">Добавить статью</a>
             <a href="{% url 'profile' %}" class="btn btn-outline-secondary mr-2">Профиль</a>
             <a href="{% url 'exit' %}" class="btn btn-outline-secondary">Выйти</a>
         {% else %}
@@ -58,6 +59,13 @@
         </aside>
     </div>
 </main>
-
+<footer class="bg-dark p-5 mt-5">
+    <div class="d-flex justify-content-center">
+        <p class="">
+            <a href="#" class="nav-link">Наверх</a>
+        </p>
+        <a href="{% url 'blog-contacts' %}" class="nav-link">Наши конкакты</a>
+    </div>
+</footer>
 </body>
 </html>

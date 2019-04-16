@@ -1,0 +1,15 @@
+{% extends 'blog/../base.html' %}
+
+
+{% block main_section %}
+    <div class="form-section">
+        <h2>Удаление статьи {{ object.title }}</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <button class="btn btn-outline-danger" type="submit">Удалить</button>
+            <a href="{% url 'detail-news' object.id %}">Вернуться назад</a>
+        </form>
+
+    </div>
+{% endblock main_section %}
+

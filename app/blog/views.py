@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import News
 
 
@@ -18,7 +18,7 @@ class ShowNewsView(ListView):
 
 class DetailNewsView(DetailView):
     model = News
-    template_name = 'blog/detail_new.html'
+    template_name = 'blog/detail_news.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(DetailNewsView, self).get_context_data(**kwargs)
@@ -36,7 +36,7 @@ class CreateNewsView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateNewsView(LoginRequiredMixin, UpdateView):
+class UpdateNewsView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = News
     template_name = 'blog/news_form.html'
     fields = ['title', 'text']
@@ -45,8 +45,23 @@ class UpdateNewsView(LoginRequiredMixin, UpdateView):
         form.instance.avtor = self.request.user
         return super().form_valid(form)
 
+    def test_func(self):
+        news = self.get_object()
+        if self.request.user == news.avtor:
+            return True
+        return False
 
 
+class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = News
+    success_url = '/'
+    template_name = 'blog/delete_news.html'
+
+    def test_func(self):
+        news = self.get_object()
+        if self.request.user == news.avtor:
+            return True
+        return False
 
 
 def contacts(request):

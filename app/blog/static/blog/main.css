@@ -29,3 +29,10 @@ body {
     color: #b38a22;
     margin-bottom: 10px;
 }
+
+footer, footer a{
+    color: #ffffff;
+}
+footer a:hover{
+    color: #ffffff;
+}

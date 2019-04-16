@@ -5,7 +5,7 @@
     <div class="alert alert-light">
         <a href="{% url 'blog-home' %}">Вернуться на главную</a>
         <h1>{{ object.title }}</h1>
-        <p>{{ object.text }}</p>
+        <p>{{ object.text|safe }}</p>
         <div class="row">
             <div>
                 {% if object.avtor.profile.img %}
@@ -22,8 +22,11 @@
                 </p>
             </div>
         </div>
-
-
+        {% if object.avtor == user %}
+            <hr>
+            <a href="{% url 'update-news' object.id %}" class="btn btn-info">Обновить</a>
+            <a href="{% url 'delete-news' object.id %}" class="btn btn-danger">Удалить</a>
+        {% endif %}
     </div>
 
 {% endblock main_section %}
